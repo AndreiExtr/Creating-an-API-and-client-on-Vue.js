@@ -160,5 +160,4 @@ export default {
 
 ```
 npm run serve
-
 ```
