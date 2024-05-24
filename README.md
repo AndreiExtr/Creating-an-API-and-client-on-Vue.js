@@ -48,7 +48,13 @@ npm install axios
 npm install express body-parser sqlite3
 ```
 
-5) Создание основного файла сервера index.js
+5) Установка драйвера MySQL для Node.js
+
+```
+npm install mysql2
+```
+
+6) Создание основного файла сервера index.js
 
 ```
 const express = require('express');
