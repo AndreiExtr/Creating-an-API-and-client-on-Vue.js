@@ -29,3 +29,38 @@ npm install -g @vue/cli
 ```
 npm install axios
 ```
+
+4) Установка необходимых зависимостей
+
+```
+npm install express body-parser sqlite3
+```
+
+5) Создание API модуля
+
+Создайте файл src/api.js и добавьте туда методы для взаимодействия с сервером:
+
+```
+import axios from 'axios';
+
+const apiClient = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+});
+
+export default {
+  getUsers() {
+    return apiClient.get('/users');
+  },
+  addUser(user) {
+    return apiClient.post('/users', user);
+  },
+  deleteUser(id) {
+    return apiClient.delete(`/users/${id}`);
+  },
+};
+```
