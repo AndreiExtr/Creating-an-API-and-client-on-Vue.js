@@ -153,22 +153,25 @@ export default {
 };
 ```
 
-2) Создание компонента для отображения списка пользователей
+2) Создание компонента для отображения списка пользователей UserList.vue
 
 ```
 <template>
   <div>
     <h1>User List</h1>
     <ul>
-      <li v-for="user in users" :key="user._id">
-        {{ user.firstName }} {{ user.middleName }} {{ user.lastName }} ({{ user.birthYear }})
-        <button @click="deleteUser(user._id)">Delete</button>
+      <li v-for="user in users" :key="user.id">
+        {{ user.firstName }} {{ user.middleName }} {{ user.lastName }} ({{ user.birthYear }}) - {{ user.gender }}
+        <button @click="deleteUser(user.id)">Delete</button>
       </li>
     </ul>
     <input v-model="newUserFirstName" placeholder="First Name">
     <input v-model="newUserMiddleName" placeholder="Middle Name">
     <input v-model="newUserLastName" placeholder="Last Name">
     <input v-model="newUserBirthYear" placeholder="Birth Year" type="number">
+    <select v-model="newUserGenderId">
+      <option v-for="gender in genders" :value="gender.id" :key="gender.id">{{ gender.name }}</option>
+    </select>
     <button @click="addUser">Add User</button>
   </div>
 </template>
@@ -180,14 +183,17 @@ export default {
   data() {
     return {
       users: [],
+      genders: [],
       newUserFirstName: '',
       newUserMiddleName: '',
       newUserLastName: '',
-      newUserBirthYear: ''
+      newUserBirthYear: '',
+      newUserGenderId: null
     };
   },
   created() {
     this.fetchUsers();
+    this.fetchGenders();
   },
   methods: {
     fetchUsers() {
@@ -195,12 +201,18 @@ export default {
         this.users = response.data;
       });
     },
+    fetchGenders() {
+      api.getGenders().then(response => {
+        this.genders = response.data;
+      });
+    },
     addUser() {
       const newUser = {
         firstName: this.newUserFirstName,
         middleName: this.newUserMiddleName,
         lastName: this.newUserLastName,
-        birthYear: parseInt(this.newUserBirthYear, 10)
+        birthYear: parseInt(this.newUserBirthYear, 10),
+        genderId: this.newUserGenderId
       };
       api.addUser(newUser).then(response => {
         this.users.push(response.data);
@@ -208,11 +220,12 @@ export default {
         this.newUserMiddleName = '';
         this.newUserLastName = '';
         this.newUserBirthYear = '';
+        this.newUserGenderId = null;
       });
     },
     deleteUser(id) {
       api.deleteUser(id).then(() => {
-        this.users = this.users.filter(user => user._id !== id);
+        this.users = this.users.filter(user => user.id !== id);
       });
     },
   },
