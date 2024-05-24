@@ -67,3 +67,98 @@ export default {
   },
 };
 ```
+
+2) Создание компонента для отображения списка пользователей
+
+```
+<template>
+  <div>
+    <h1>User List</h1>
+    <ul>
+      <li v-for="user in users" :key="user._id">
+        {{ user.firstName }} {{ user.middleName }} {{ user.lastName }} ({{ user.birthYear }})
+        <button @click="deleteUser(user._id)">Delete</button>
+      </li>
+    </ul>
+    <input v-model="newUserFirstName" placeholder="First Name">
+    <input v-model="newUserMiddleName" placeholder="Middle Name">
+    <input v-model="newUserLastName" placeholder="Last Name">
+    <input v-model="newUserBirthYear" placeholder="Birth Year" type="number">
+    <button @click="addUser">Add User</button>
+  </div>
+</template>
+
+<script>
+import api from '../api';
+
+export default {
+  data() {
+    return {
+      users: [],
+      newUserFirstName: '',
+      newUserMiddleName: '',
+      newUserLastName: '',
+      newUserBirthYear: ''
+    };
+  },
+  created() {
+    this.fetchUsers();
+  },
+  methods: {
+    fetchUsers() {
+      api.getUsers().then(response => {
+        this.users = response.data;
+      });
+    },
+    addUser() {
+      const newUser = {
+        firstName: this.newUserFirstName,
+        middleName: this.newUserMiddleName,
+        lastName: this.newUserLastName,
+        birthYear: parseInt(this.newUserBirthYear, 10)
+      };
+      api.addUser(newUser).then(response => {
+        this.users.push(response.data);
+        this.newUserFirstName = '';
+        this.newUserMiddleName = '';
+        this.newUserLastName = '';
+        this.newUserBirthYear = '';
+      });
+    },
+    deleteUser(id) {
+      api.deleteUser(id).then(() => {
+        this.users = this.users.filter(user => user._id !== id);
+      });
+    },
+  },
+};
+</script>
+```
+
+3) Обновление основного компонента App.vue
+
+```
+<template>
+  <div id="app">
+    <UserList />
+  </div>
+</template>
+
+<script>
+import UserList from './components/UserList.vue';
+
+export default {
+  name: 'App',
+  components: {
+    UserList,
+  },
+};
+</script>
+```
+
+4) Запуск Vue приложения
+
+```
+npm run serve
+
+```
