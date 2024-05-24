@@ -48,6 +48,67 @@ npm install axios
 npm install express body-parser sqlite3
 ```
 
+5) Создание основного файла сервера index.js
+
+```
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql2');
+const cors = require('cors');
+
+const app = express();
+const port = 3000;
+
+// Настройка соединения с MySQL
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'your_username',
+  password: 'your_password',
+  database: 'your_database'
+});
+
+connection.connect(err => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL');
+});
+
+app.use(cors());
+app.use(bodyParser.json());
+
+// Получение всех пользователей
+app.get('/api/users', (req, res) => {
+  connection.query('SELECT * FROM users', (error, results) => {
+    if (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Добавление нового пользователя
+app.post('/api/users', (req, res) => {
+  const { firstName, lastName, birthYear } = req.body;
+  connection.query('INSERT INTO users (firstName, lastName, birthYear) VALUES (?, ?, ?)', [firstName, lastName, birthYear], (error, result) => {
+    if (error) {
+      console.error('Error adding user:', error);
+      res.status(400).json({ error });
+      return;
+    }
+    const newUser = { id: result.insertId, firstName, lastName, birthYear };
+    res.status(201).json(newUser);
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+```
+
 
 # Шаг 2: Создание клиента на Vue.js
 
