@@ -84,9 +84,14 @@ connection.connect(err => {
 app.use(cors());
 app.use(bodyParser.json());
 
-// Получение всех пользователей
+// Получение всех пользователей с указанием пола
 app.get('/api/users', (req, res) => {
-  connection.query('SELECT * FROM users', (error, results) => {
+  const sqlQuery = `
+    SELECT u.id, u.firstName, u.lastName, u.birthYear, g.name AS gender
+    FROM UserList u
+    INNER JOIN Gender g ON u.genderId = g.id
+  `;
+  connection.query(sqlQuery, (error, results) => {
     if (error) {
       console.error('Error fetching users:', error);
       res.status(500).json({ error });
@@ -98,14 +103,15 @@ app.get('/api/users', (req, res) => {
 
 // Добавление нового пользователя
 app.post('/api/users', (req, res) => {
-  const { firstName, lastName, birthYear } = req.body;
-  connection.query('INSERT INTO users (firstName, lastName, birthYear) VALUES (?, ?, ?)', [firstName, lastName, birthYear], (error, result) => {
+  const { firstName, lastName, birthYear, genderId } = req.body;
+  const sqlQuery = 'INSERT INTO UserList (firstName, lastName, birthYear, genderId) VALUES (?, ?, ?, ?)';
+  connection.query(sqlQuery, [firstName, lastName, birthYear, genderId], (error, result) => {
     if (error) {
       console.error('Error adding user:', error);
       res.status(400).json({ error });
       return;
     }
-    const newUser = { id: result.insertId, firstName, lastName, birthYear };
+    const newUser = { id: result.insertId, firstName, lastName, birthYear, genderId };
     res.status(201).json(newUser);
   });
 });
