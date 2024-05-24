@@ -36,7 +36,10 @@ npm install axios
 npm install express body-parser sqlite3
 ```
 
-5) Создание API модуля
+
+# Шаг 2: Создание клиента на Vue.js
+
+1) Создание API модуля
 
 Создайте файл src/api.js и добавьте туда методы для взаимодействия с сервером:
 
