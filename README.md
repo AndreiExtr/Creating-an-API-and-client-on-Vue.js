@@ -31,19 +31,28 @@ npm -v
 
 2) VUE CLI
 
-Vue CLI — полноценная система для быстрой разработки на Vue.js, предоставляющая:
-- Интерактивное создание проекта через @vue/cli.
-- Быстрое прототипирование через @vue/cli + @vue/cli-service-global без конфигурации.
-- Runtime-зависимость (@vue/cli-service) предоставляющая:
-  а) Возможность обновления;
-  б) Создана поверх webpack, с оптимальными настройками по умолчанию;
-  в) Настройка с помощью конфигурационного файла в проекте;
-  г) Расширяемость плагинами
-- Большая коллекция официальных плагинов, интегрирующих лучшие инструменты экосистемы фронтенда.
-- Полноценный графический пользовательский интерфейс для создания и управления проектами Vue.js.
+Эта команда установит и выполнит create-vue, официальный инструмент для создания каркасов проекта Vue. Вам будут представлены подсказки для нескольких дополнительных функций, таких как TypeScript и поддержка тестирования:
   
 ```
-npm install -g @vue/cli
+npm create vue@latest
+```
+✔ Project name: … <your-project-name>
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit testing? … No / Yes
+✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+✔ Add ESLint for code quality? … No / Yes
+✔ Add Prettier for code formatting? … No / Yes
+✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+
+Если вы не уверены в выборе опции, просто выберите No, нажав пока enter. После создания проекта следуйте инструкциям по установке зависимостей и запуску сервера разработки.:
+
+```
+cd <your-project-name>
+npm install
+npm run dev
 ```
 
 3) Установка Axios
