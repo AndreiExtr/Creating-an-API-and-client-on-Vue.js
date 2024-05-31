@@ -36,16 +36,16 @@ npm -v
 ```
 npm create vue@latest
 ```
-✔ Project name: … <your-project-name>
-✔ Add TypeScript? … No / Yes
-✔ Add JSX Support? … No / Yes
-✔ Add Vue Router for Single Page Application development? … No / Yes
-✔ Add Pinia for state management? … No / Yes
-✔ Add Vitest for Unit testing? … No / Yes
-✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
-✔ Add ESLint for code quality? … No / Yes
-✔ Add Prettier for code formatting? … No / Yes
-✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+- ✔ Project name: … <your-project-name>
+- ✔ Add TypeScript? … No / Yes
+- ✔ Add JSX Support? … No / Yes
+- ✔ Add Vue Router for Single Page Application development? … No / Yes
+- ✔ Add Pinia for state management? … No / Yes
+- ✔ Add Vitest for Unit testing? … No / Yes
+- ✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+- ✔ Add ESLint for code quality? … No / Yes
+- ✔ Add Prettier for code formatting? … No / Yes
+- ✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
 
 Если вы не уверены в выборе опции, просто выберите No, нажав пока enter. После создания проекта следуйте инструкциям по установке зависимостей и запуску сервера разработки.:
 
