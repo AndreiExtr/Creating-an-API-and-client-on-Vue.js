@@ -41,19 +41,19 @@ npm install -g @vue/cli
 vue create my-project
 ```
 Шаги для старта:
-1) Manually select features
-2) Check the features needed for your project
-   a)Router
-   b)Vuex
-   c)CSSPre-processors
-   d)Linter/Formatter
-3)3.х
-4)Enter
-5)Sass/SCSS(with dart-sass)
-6)ESLint+Standard config
-7)Linton save
-8)In package.json
-9)Enter
+1. Manually select features
+2. Check the features needed for your project
+   - Router
+   - Vuex
+   - CSS Pre-processors
+   - Linter/Formatter
+3. 3.х
+4. Enter
+5. Sass/SCSS (with dart-sass)
+6. ESLint + Standard config
+7. Lint on save
+8. In package.json
+9. Enter
 
 Если вы не уверены в выборе опции, просто выберите No, нажав пока enter. После создания проекта следуйте инструкциям по установке зависимостей и запуску сервера разработки.:
 
