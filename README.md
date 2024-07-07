@@ -34,25 +34,33 @@ npm -v
 Эта команда установит и выполнит create-vue, официальный инструмент для создания каркасов проекта Vue. Вам будут представлены подсказки для нескольких дополнительных функций, таких как TypeScript и поддержка тестирования:
   
 ```
-npm create vue@latest
+npm install -g @vue/cli
 ```
-- ✔ Project name: … <your-project-name>
-- ✔ Add TypeScript? … No / Yes
-- ✔ Add JSX Support? … No / Yes
-- ✔ Add Vue Router for Single Page Application development? … No / Yes
-- ✔ Add Pinia for state management? … No / Yes
-- ✔ Add Vitest for Unit testing? … No / Yes
-- ✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
-- ✔ Add ESLint for code quality? … No / Yes
-- ✔ Add Prettier for code formatting? … No / Yes
-- ✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+Создание проекта Vue:
+```
+vue create my-project
+```
+Шаги для старта:
+1) Manually select features
+2) Check the features needed for your project
+   a)Router
+   b)Vuex
+   c)CSSPre-processors
+   d)Linter/Formatter
+3)3.х
+4)Enter
+5)Sass/SCSS(with dart-sass)
+6)ESLint+Standard config
+7)Linton save
+8)In package.json
+9)Enter
 
 Если вы не уверены в выборе опции, просто выберите No, нажав пока enter. После создания проекта следуйте инструкциям по установке зависимостей и запуску сервера разработки.:
 
 ```
 cd <your-project-name>
 npm install
-npm run dev
+npm run serve
 ```
 
 3) Установка Axios
